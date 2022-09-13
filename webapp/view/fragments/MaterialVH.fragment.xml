@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<!--search="_socSearch" liveChange="_socSearch" cancel="_socClose" -->
+	<SelectDialog id="_IDMatVH" title="{i18n>selectMat}"  class="sapUiPopupWithPadding" search="matSearch" liveChange="matSearch" growingThreshold="30"
+		items="{ path: '/ZCDSEWM_IN_01',parameters: { operationMode: 'Server' }, templateShareable: false}"
+		confirm="materialSelected">
+		<items>
+		<!--	<StandardListItem class="sapUiPopupWithPadding sapUiNoMargin" title="{SociedadesSalud>Bukrs}" description="{SociedadesSalud>Butxt}"/>-->
+			<CustomListItem id="_IDMatCustomListItem2">
+			<FlexBox id="_IDMatFlexBox2" direction="Row" justifyContent="SpaceBetween" class="sapUiTinyMargin">
+					<Label id="_IDMatLabel4" design="Bold" text="{Material}" />
+					<Label id="_IDMatLabel5" text="{MaterialName}" />
+                    <Label id="_IDMatLabel6" text="{MaterialType}" />
+			</FlexBox>
+		</CustomListItem>
+		</items>
+	</SelectDialog>
+</core:FragmentDefinition>

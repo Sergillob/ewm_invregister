@@ -1,0 +1,97 @@
+<mvc:View controllerName="viscofan.ewminvregister.controller.ScanInfo"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+    <Shell id="shell">
+        <App id="app">
+            <pages>
+                <Page id="page" title="{i18n>title}" class="sapUiContentPadding sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--content sapUiResponsivePadding--footer">
+                    <content>
+                        <VBox id="_IDRGenVBox1" justifyContent="Center" alignItems ="Center" alignContent="Center">
+                            <HBox id="_IDRGenHBox1" fitContainer="true" justifyContent="Center" alignItems ="Center" alignContent="Center">
+                                <Label id="_IDRGenLabel6" text="{i18n>NewPallet}" labelFor="_IDRGenSwitch1"/>
+                                <Switch id="_IDRGenSwitch1" state="{MainStaticModel>/FLAG_PALLET}" customTextOn="Yes" customTextOff="No">
+                                    <layoutData>
+                                        <FlexItemData id="_IDRGenFlexItemData1" growFactor="1" />
+                                    </layoutData>
+                                </Switch>
+                            </HBox>
+                            <f:SimpleForm id="_IDRGenSimpleForm1" editable="true">
+                                <f:content>
+                                    <!--<HBox id="_IDRGenHBox2" fitContainer="true" justifyContent="Center" alignItems ="Center" alignContent="Center">-->
+                                    <Label id="_IDRGenLabel1" text="{i18n>article}" labelFor="inputArticle"/>
+                                    <Input value="" id="inputArticle" type="Number" submit="onScanArticle" width="auto"/>
+                                    <!--</HBox>-->
+                                    <!--<HBox id="_IDRGenHBox2" fitContainer="true" justifyContent="Center" alignItems ="Center" alignContent="Center">-->
+                                    <Label id="_IDRGenLabel2" text="{i18n>material}" labelFor="inputMaterial"/>
+                                    <Input value="" id="inputMaterial" submit="onScanMaterial" showValueHelp="true" valueHelpRequest="onValueHelpMatRequested" width="auto"/>
+                                    <!--</HBox>-->
+                                    <!--<HBox id="_IDRGenHBox2" fitContainer="true" justifyContent="Center" alignItems ="Center" alignContent="Center">-->
+                                    <Label id="_IDRGenLabel3" text="{i18n>quan}" labelFor="inputQuan"/>
+                                    <Input value="" id="inputQuan" type="Number" submit="onScanQuan" width="auto"/>
+                                    <!--</HBox>-->
+                                    <Label id="_IDRGenLabel7" text="{i18n>grams}" labelFor="inputGrams"/>
+                                    <Input value="" id="inputGrams" type="Number" submit="onScanGrams" width="auto"/>
+                                    <!--<HBox id="_IDRGenHBox2" fitContainer="true" justifyContent="Center" alignItems ="Center" alignContent="Center">-->
+                                    <Label id="_IDRGenLabel4" text="{i18n>batch}" labelFor="inputBatch"/>
+                                    <Input value="{ path: '',
+                                                    type: 'sap.ui.model.type.String',
+                                                    constraints: { maxLength : 1, minLength : 0 } }" id="inputBatch" submit="onScanBatch" width="auto"/>
+                                    <!--</HBox>-->
+                                    <Label id="_IDRGenLabel8" text="{i18n>manufDate}" labelFor="inputManufDate"/>
+                                    <DatePicker id="inputManufDate" class="sapUiSmallMarginBottom" change="onScanManufDate"></DatePicker>
+                                    <!--<HBox id="_IDRGenHBox2" fitContainer="true" justifyContent="Center" alignItems ="Center" alignContent="Center">-->
+                                    <Label id="_IDRGenLabel5" text="{i18n>location}" labelFor="inputLocation"/>
+                                    <Input value="" id="inputLocation" submit="onScanLocation" showValueHelp="true" valueHelpRequest="handleHelpStorBin" width="auto"/>
+                                    <!--</HBox>-->
+                                </f:content>
+                            </f:SimpleForm>
+                            <Table id="ArticleTable" items="{MainStaticModel>/Articles}" autoPopinMode="true">
+                                <columns>
+                                    <Column id="articleCol" width="11em">
+                                        <Text id="_IDRGenText9" text="{i18n>article}" />
+                                    </Column>
+                                    <Column id="materialCol" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline">
+                                        <Text id="_IDRGenText10" text="{i18n>material}" />
+                                    </Column>
+                                    <Column id="quanCol" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline">
+                                        <Text id="_IDRGenText16" text="{i18n>quan}" />
+                                    </Column>
+                                    <Column id="gramCol" minScreenWidth="Phone" demandPopin="true" popinDisplay="Inline">
+                                        <Text id="_IDRGenText19" text="{i18n>grams}" />
+                                    </Column>
+                                    <Column id="batchCol" minScreenWidth="Phone" demandPopin="true" popinDisplay="Inline">
+                                        <Text id="_IDRGenText11" text="{i18n>batch}" />
+                                    </Column>
+                                    <Column id="ManCol" minScreenWidth="Phone" demandPopin="true" popinDisplay="Inline">
+                                        <Text id="_IDRGenText20" text="{i18n>manufDate}" />
+                                    </Column>
+                                    <Column id="locationCol" minScreenWidth="Phone" demandPopin="true" popinDisplay="Inline">
+                                        <Text id="_IDRGenText18" text="{i18n>location}" />
+                                    </Column>
+                                    <Column id="delete" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline"/>
+                                </columns>
+                                <items>
+                                    <ColumnListItem id="_IDRGenColumnListItem2">
+                                        <cells>
+                                            <ObjectIdentifier id="_IDRGenObjectIdentifier2" title="{MainStaticModel>zarticle_id}" class="sapUiTinyMarginTopBottom" />
+                                            <Text id="_IDRGenText12" text="{MainStaticModel>zmaterial}" />
+                                            <Text id="_IDRGenText13" text="{MainStaticModel>zmeters}" />
+                                            <Text id="_IDRGenText21" text="{MainStaticModel>zgrams}" />
+                                            <Text id="_IDRGenText17" text="{MainStaticModel>zbatch}" />
+                                            <Text id="_IDRGenText22" text="{MainStaticModel>zmanuf_date}" />
+                                            <Text id="_IDRGenText14" text="{MainStaticModel>zbin}" />
+                                            <Button id="_IDRGenButton2" type="Reject" text="{i18n>delete}" press="onDeleteItem" />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                            <Button id="btnPost" type="Accept" text="{i18n>post}" press="onPressPost" width="6rem"/>
+                        </VBox>
+                    </content>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+</mvc:View>
