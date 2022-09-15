@@ -1,12 +1,11 @@
 sap.ui.define([
         "sap/ui/core/mvc/Controller",
-        "sap/ui/model/json/JSONModel",
         "sap/m/MessageBox"
     ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, JSONModel, MessageBox) {
+    function (Controller, MessageBox) {
         "use strict";
 
         return Controller.extend("viscofan.ewminvregister.controller.ScanInfo", {
@@ -101,12 +100,15 @@ sap.ui.define([
                     oView.byId("inputLocation").focus();
                 });
             },
+
+
             onScanLocation: function (oEvent) {
                 var oInput = oEvent.getSource();
                 oInput.setValue(this._formatScannedValue(oInput));
                 var oView = this.getView();
                 this._onPressAddTask(oView);
             },
+
 
             _onPressAddTask: function (oView) {
                 var oInputAddTask = oView.byId("inputArticle");
@@ -201,13 +203,7 @@ sap.ui.define([
                 var sKey = "";
 
                 var oModel = this.getView().getModel();
-                /*var oEntry = {
-                    "d": {
-                        "Key": "X",
-                        "Value": encodeString
 
-                    }
-                };*/
 
                 if (oStaticModel.getProperty("/FLAG_PALLET")) {
                     sKey = "NEWPALLET"

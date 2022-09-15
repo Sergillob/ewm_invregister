@@ -39,6 +39,7 @@
                                                     type: 'sap.ui.model.type.String',
                                                     constraints: { maxLength : 1, minLength : 0 } }" id="inputBatch" submit="onScanBatch" width="auto"/>
                                     <!--</HBox>-->
+                                    
                                     <Label id="_IDRGenLabel8" text="{i18n>manufDate}" labelFor="inputManufDate"/>
                                     <DatePicker id="inputManufDate" class="sapUiSmallMarginBottom" change="onScanManufDate"></DatePicker>
                                     <!--<HBox id="_IDRGenHBox2" fitContainer="true" justifyContent="Center" alignItems ="Center" alignContent="Center">-->
