@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+
+	<SelectDialog id="_IDBatchVH" title="{i18n>selectBatch}" class="sapUiPopupWithPadding" search="batSearch" liveChange="batSearch" growingThreshold="30" items="{ path: '/ZCDSEWM_CH_01',parameters: { operationMode: 'Server' }, templateShareable: false}" confirm="chargSelected">
+		<items>
+			<CustomListItem id="_IDBatCustomListItem2">
+				<FlexBox id="_IDBatFlexBox2" direction="Row" justifyContent="SpaceBetween" class="sapUiTinyMargin">
+					<!--<Label id="_IDBatLabel4" design="Bold" text="{matnr}" />-->
+					<Label id="_IDBatLabel5" design="Bold" text="{charg}" />
+				</FlexBox>
+			</CustomListItem>
+		</items>
+	</SelectDialog>
+</core:FragmentDefinition>

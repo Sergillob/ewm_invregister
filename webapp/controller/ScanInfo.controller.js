@@ -10,7 +10,7 @@ sap.ui.define([
 
         return Controller.extend("viscofan.ewminvregister.controller.ScanInfo", {
             onInit: function () {
-
+                this.oResourceBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
             },
 
             _formatScannedValue: function (oInput) {
@@ -56,6 +56,7 @@ sap.ui.define([
                 var oInput = oEvent.getSource();
                 oInput.setValue(this._formatScannedValue(oInput));
                 var oView = this.getView();
+                oInput.setValueState("None");
                 jQuery.sap.delayedCall(100, this, function () {
                     oView.byId("inputMaterial").focus();
                 });
@@ -63,6 +64,7 @@ sap.ui.define([
             onScanMaterial: function (oEvent) {
                 var oInput = oEvent.getSource();
                 oInput.setValue(this._formatScannedValue(oInput));
+                oInput.setValueState("None");
                 var oView = this.getView();
                 jQuery.sap.delayedCall(100, this, function () {
                     oView.byId("inputQuan").focus();
@@ -71,6 +73,19 @@ sap.ui.define([
             onScanQuan: function (oEvent) {
                 var oInput = oEvent.getSource();
                 oInput.setValue(this._formatScannedValue(oInput));
+                oInput.setValueState("None");
+                //quitamos decimales y el punto de miles
+                var str = oInput.getValue();
+                if (str !== '') {
+                    str = str.replace('.', '');
+                    //str = str.replace(/\s/g, '');
+                    oInput.setValue(str);
+
+                    var coma = str.search(',');
+                    str = str.substring(0, coma);
+                    oInput.setValue(str);
+                }
+
                 var oView = this.getView();
                 jQuery.sap.delayedCall(100, this, function () {
                     oView.byId("inputGrams").focus();
@@ -87,6 +102,7 @@ sap.ui.define([
             onScanBatch: function (oEvent) {
                 var oInput = oEvent.getSource();
                 oInput.setValue(this._formatScannedValue(oInput));
+                oInput.setValueState("None");
                 var oView = this.getView();
                 jQuery.sap.delayedCall(100, this, function () {
                     oView.byId("inputManufDate").focus();
@@ -120,9 +136,22 @@ sap.ui.define([
                 var oInputAddTask7 = oView.byId("inputManufDate");
                 //   var oButtonAddTask = oView.byId("buttonAddTask");
 
+                oInputAddTask.setValueState("None");
+                oInputAddTask2.setValueState("None");
+                oInputAddTask3.setValueState("None");
+                oInputAddTask4.setValueState("None");
+
                 var sTaskDescription = oInputAddTask.getValue();
                 var sTaskDescription2 = oInputAddTask2.getValue();
                 var sTaskDescription3 = oInputAddTask3.getValue();
+                var str = sTaskDescription3;
+                if (str !== '') {
+                    str = str.replace('.', '');
+                    var coma = str.search(',');
+                    str = str.substring(0, coma);
+                    oInputAddTask3.setValue(str);
+                }
+
                 var sTaskDescription4 = oInputAddTask4.getValue();
                 var sTaskDescription5 = oInputAddTask5.getValue();
                 var sTaskDescription6 = oInputAddTask6.getValue();
@@ -179,6 +208,21 @@ sap.ui.define([
 
                         }
                     });
+                } else {
+                    if (sTaskDescription === '') {
+                        oInputAddTask.setValueState("Error");
+                    }
+                    if (sTaskDescription2 === '') {
+                        oInputAddTask2.setValueState("Error");
+                    }
+                    if (sTaskDescription3 === '') {
+                        oInputAddTask3.setValueState("Error");
+                    }
+                    if (sTaskDescription4 === '') {
+                        oInputAddTask4.setValueState("Error");
+                    }
+                    var sMessage = this.oResourceBundle.getText("mandatoryFields");
+                    MessageBox.error(sMessage);
                 }
             },
 
@@ -239,6 +283,54 @@ sap.ui.define([
 
                     }
                 });
+            },
+
+            onValueHelpBatchRequested: function (oEvent) {
+                if (!this.BatchVHDialog) {
+                    this.BatchVHDialog = sap.ui.xmlfragment(
+                        "viscofan.ewminvregister.view.fragments.BatchVH", this
+                    );
+                    this.getView().addDependent(this.BatchVHDialog);
+                }
+                this.BatchVHDialog.getBinding("items").filter([]);
+                this.BatchVHDialog.open();
+            },
+
+            batSearch: function (oEvent) {
+                var sValue = oEvent.getParameter("value");
+                var oItemsBinding = oEvent.getParameter("itemsBinding");
+                var oFilters = [];
+                var aTotFilters = [];
+
+                var sFilterMat = new sap.ui.model.Filter({
+                    path: "matnr",
+                    operator: sap.ui.model.FilterOperator.Contains,
+                    value1: sValue
+                });
+                var sFilterBat = new sap.ui.model.Filter({
+                    path: "charg",
+                    operator: sap.ui.model.FilterOperator.Contains,
+                    value1: sValue
+                });
+
+
+                // oFilters.push(sFilterMat);
+                oFilters.push(sFilterBat);
+
+                var allFilters = new sap.ui.model.Filter(oFilters, false);
+                aTotFilters.push(allFilters);
+
+                oItemsBinding.filter(aTotFilters);
+
+            },
+            chargSelected: function (oEvent) {
+                var oTargetInput = this.getView().byId("inputBatch");
+                var oItemSelected = oEvent.getParameter("selectedItem");
+                var oSelectedObject = oItemSelected.getBindingContext().getObject();
+
+                oTargetInput.setValue(oSelectedObject.charg);
+                oTargetInput.fireSubmit();
+
             },
             onValueHelpMatRequested: function (oEvent) {
                 if (!this.MatVHDialog) {

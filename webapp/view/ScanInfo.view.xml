@@ -21,15 +21,15 @@
                                 <f:content>
                                     <!--<HBox id="_IDRGenHBox2" fitContainer="true" justifyContent="Center" alignItems ="Center" alignContent="Center">-->
                                     <Label id="_IDRGenLabel1" text="{i18n>article}" labelFor="inputArticle"/>
-                                    <Input value="" id="inputArticle" type="Number" submit="onScanArticle" width="auto"/>
+                                    <Input value="" id="inputArticle" required="true" type="Number" submit="onScanArticle" width="auto"/>
                                     <!--</HBox>-->
                                     <!--<HBox id="_IDRGenHBox2" fitContainer="true" justifyContent="Center" alignItems ="Center" alignContent="Center">-->
                                     <Label id="_IDRGenLabel2" text="{i18n>material}" labelFor="inputMaterial"/>
-                                    <Input value="" id="inputMaterial" submit="onScanMaterial" showValueHelp="true" valueHelpRequest="onValueHelpMatRequested" width="auto"/>
+                                    <Input value="" id="inputMaterial" submit="onScanMaterial" showValueHelp="true" valueHelpRequest="onValueHelpMatRequested" required="true" width="auto"/>
                                     <!--</HBox>-->
                                     <!--<HBox id="_IDRGenHBox2" fitContainer="true" justifyContent="Center" alignItems ="Center" alignContent="Center">-->
                                     <Label id="_IDRGenLabel3" text="{i18n>quan}" labelFor="inputQuan"/>
-                                    <Input value="" id="inputQuan" type="Number" submit="onScanQuan" width="auto"/>
+                                    <Input value="" id="inputQuan" required="true" submit="onScanQuan" width="auto"/>
                                     <!--</HBox>-->
                                     <Label id="_IDRGenLabel7" text="{i18n>grams}" labelFor="inputGrams"/>
                                     <Input value="" id="inputGrams" type="Number" submit="onScanGrams" width="auto"/>
@@ -37,14 +37,14 @@
                                     <Label id="_IDRGenLabel4" text="{i18n>batch}" labelFor="inputBatch"/>
                                     <Input value="{ path: '',
                                                     type: 'sap.ui.model.type.String',
-                                                    constraints: { maxLength : 1, minLength : 0 } }" id="inputBatch" submit="onScanBatch" width="auto"/>
+                                                    constraints: { maxLength : 1, minLength : 0 } }" id="inputBatch" submit="onScanBatch" required="true" showValueHelp="true" valueHelpRequest="onValueHelpBatchRequested" width="auto"/>
                                     <!--</HBox>-->
-                                    
+
                                     <Label id="_IDRGenLabel8" text="{i18n>manufDate}" labelFor="inputManufDate"/>
                                     <DatePicker id="inputManufDate" class="sapUiSmallMarginBottom" change="onScanManufDate"></DatePicker>
                                     <!--<HBox id="_IDRGenHBox2" fitContainer="true" justifyContent="Center" alignItems ="Center" alignContent="Center">-->
                                     <Label id="_IDRGenLabel5" text="{i18n>location}" labelFor="inputLocation"/>
-                                    <Input value="" id="inputLocation" submit="onScanLocation" showValueHelp="true" valueHelpRequest="handleHelpStorBin" width="auto"/>
+                                    <Input value="" id="inputLocation" submit="onScanLocation" showValueHelp="true" valueHelpRequest="handleHelpStorBin" required="true" width="auto"/>
                                     <!--</HBox>-->
                                 </f:content>
                             </f:SimpleForm>
