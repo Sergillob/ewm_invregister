@@ -136,7 +136,9 @@ sap.ui.define([
 
                 if (sTaskDescription && sTaskDescription2 && sTaskDescription3 && sTaskDescription4 && sTaskDescription5) {
                     var that = this;
-                    var sUrl = "/ArticleSet(Key='" + sTaskDescription + "')";
+                    // var sUrl = "/ArticleSet(Key='" + sTaskDescription + "')";
+                    var sUrl = "/ArticleCheckSet(zarticle_id='" + sTaskDescription + "',zbin='" + sTaskDescription5 + "',zmaterial='" + sTaskDescription2 + "')";
+                    //var sUrl = "/ArticleCheckSet(zarticle_id='" + sTaskDescription + "')";
                     oDataModel.read(sUrl, {
                         success: function (oData, oResponse) {
                             var oArticle = {
@@ -203,7 +205,6 @@ sap.ui.define([
                 var sKey = "";
 
                 var oModel = this.getView().getModel();
-
 
                 if (oStaticModel.getProperty("/FLAG_PALLET")) {
                     sKey = "NEWPALLET"
