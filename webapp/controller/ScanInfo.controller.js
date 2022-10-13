@@ -82,8 +82,11 @@ sap.ui.define([
                     oInput.setValue(str);
 
                     var coma = str.search(',');
-                    str = str.substring(0, coma);
-                    oInput.setValue(str);
+                    if (coma !== -1) {
+                        str = str.substring(0, coma);
+                        oInput.setValue(str);
+                    }
+
                 }
 
                 var oView = this.getView();
@@ -147,9 +150,13 @@ sap.ui.define([
                 var str = sTaskDescription3;
                 if (str !== '') {
                     str = str.replace('.', '');
-                    var coma = str.search(',');
-                    str = str.substring(0, coma);
                     oInputAddTask3.setValue(str);
+                    var coma = str.search(',');
+                    if (coma !== -1) {
+                        str = str.substring(0, coma);
+                        oInputAddTask3.setValue(str);
+                    }
+                    sTaskDescription3 = oInputAddTask3.getValue();
                 }
 
                 var sTaskDescription4 = oInputAddTask4.getValue();
